@@ -2,7 +2,7 @@
 import React from 'react';
 import { cn } from '@/lib/utils';
 
-interface CardProps {
+interface CardProps extends React.HTMLAttributes<HTMLDivElement> {
   children: React.ReactNode;
   className?: string;
   hover?: boolean;
@@ -13,7 +13,10 @@ const Card: React.FC<CardProps> = ({
   children,
   className,
   hover = false,
-  padding = 'md'
+  padding = 'md',
+  onClick,
+  style,
+  ...props
 }) => {
   const paddingClasses = {
     sm: 'p-4',
@@ -27,8 +30,12 @@ const Card: React.FC<CardProps> = ({
         'bg-white rounded-xl shadow-lg border border-gray-100',
         paddingClasses[padding],
         hover && 'hover:shadow-xl hover:-translate-y-1 transition-all duration-300 cursor-pointer',
+        onClick && 'cursor-pointer',
         className
       )}
+      onClick={onClick}
+      style={style}
+      {...props}
     >
       {children}
     </div>
