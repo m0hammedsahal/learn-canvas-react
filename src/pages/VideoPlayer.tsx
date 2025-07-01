@@ -19,7 +19,7 @@ const VideoPlayer: React.FC = () => {
   const [isCompleted, setIsCompleted] = useState(false);
   const [showComments, setShowComments] = useState(false);
 
-  // Mock data with YouTube links
+  // Mock data with YouTube links - fixed to match interface
   const mockChapters = [
     { 
       id: 'c1', 
@@ -95,7 +95,6 @@ const VideoPlayer: React.FC = () => {
 
   const handleMarkComplete = () => {
     setIsCompleted(true);
-    // Here you would typically update the backend
   };
 
   const openYouTube = () => {
@@ -107,34 +106,34 @@ const VideoPlayer: React.FC = () => {
   return (
     <div className="min-h-screen" style={{ background: 'hsl(var(--neuro-bg))' }}>
       {/* Header */}
-      <div className="neuro-card m-4 p-4 flex items-center justify-between">
+      <div className="neuro-card m-2 sm:m-4 p-3 sm:p-4 flex items-center justify-between">
         <button
           onClick={() => navigate('/dashboard')}
-          className="neuro-button flex items-center space-x-2 px-4 py-2 text-text-primary"
+          className="neuro-button flex items-center space-x-2 px-3 py-2 text-text-primary"
         >
-          <ArrowLeft size={20} />
-          <span className="font-poppins">Back</span>
+          <ArrowLeft size={18} />
+          <span className="font-poppins text-sm">Back</span>
         </button>
         
-        <h1 className="text-lg font-raleway font-semibold text-text-primary hidden md:block">
+        <h1 className="text-sm sm:text-lg font-raleway font-semibold text-text-primary hidden md:block truncate flex-1 mx-4">
           {chapter?.title}
         </h1>
 
         <button
           onClick={() => setShowChapters(!showChapters)}
-          className="neuro-button flex items-center space-x-2 px-4 py-2 text-text-primary"
+          className="neuro-button flex items-center space-x-2 px-3 py-2 text-text-primary"
         >
-          <List size={20} />
-          <span className="font-poppins hidden md:inline">Chapters</span>
+          <List size={18} />
+          <span className="font-poppins text-sm hidden sm:inline">Chapters</span>
         </button>
       </div>
 
-      <div className="flex flex-col lg:flex-row gap-4 p-4">
+      <div className="flex flex-col lg:flex-row gap-2 sm:gap-4 p-2 sm:p-4">
         {/* Main Content */}
-        <div className="flex-1 space-y-4">
+        <div className="flex-1 space-y-3 sm:space-y-4">
           {/* Video Player */}
-          <Card className="relative overflow-hidden">
-            <div className="relative bg-gray-900 aspect-video rounded-2xl overflow-hidden">
+          <Card className="relative overflow-hidden" padding="sm">
+            <div className="relative bg-gray-900 aspect-video rounded-lg sm:rounded-2xl overflow-hidden">
               {/* Demo Video Placeholder */}
               <div className="w-full h-full flex items-center justify-center">
                 <img
@@ -145,22 +144,22 @@ const VideoPlayer: React.FC = () => {
                 <div className="absolute inset-0 flex items-center justify-center">
                   <button
                     onClick={handlePlayPause}
-                    className="neuro-button w-20 h-20 rounded-full flex items-center justify-center text-white"
+                    className="neuro-button w-16 h-16 sm:w-20 sm:h-20 rounded-full flex items-center justify-center text-white"
                   >
                     {isPlaying ? (
-                      <Pause size={32} />
+                      <Pause size={24} />
                     ) : (
-                      <Play className="ml-1" size={32} />
+                      <Play className="ml-1" size={24} />
                     )}
                   </button>
                 </div>
               </div>
 
               {/* Video Controls */}
-              <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-4">
+              <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-2 sm:p-4">
                 {/* Progress Bar */}
                 <div
-                  className="w-full h-2 bg-white/30 rounded-full mb-4 cursor-pointer"
+                  className="w-full h-1.5 sm:h-2 bg-white/30 rounded-full mb-3 sm:mb-4 cursor-pointer"
                   onClick={handleProgressClick}
                 >
                   <div
@@ -171,29 +170,29 @@ const VideoPlayer: React.FC = () => {
 
                 {/* Control Buttons */}
                 <div className="flex items-center justify-between text-white">
-                  <div className="flex items-center space-x-4">
-                    <button onClick={handlePrevChapter} className="neuro-button p-2 text-white">
-                      <SkipBack size={20} />
+                  <div className="flex items-center space-x-2 sm:space-x-4">
+                    <button onClick={handlePrevChapter} className="neuro-button p-1.5 sm:p-2 text-white">
+                      <SkipBack size={16} />
                     </button>
-                    <button onClick={handlePlayPause} className="neuro-button p-2 text-white">
-                      {isPlaying ? <Pause size={24} /> : <Play size={24} />}
+                    <button onClick={handlePlayPause} className="neuro-button p-1.5 sm:p-2 text-white">
+                      {isPlaying ? <Pause size={20} /> : <Play size={20} />}
                     </button>
-                    <button onClick={handleNextChapter} className="neuro-button p-2 text-white">
-                      <SkipForward size={20} />
+                    <button onClick={handleNextChapter} className="neuro-button p-1.5 sm:p-2 text-white">
+                      <SkipForward size={16} />
                     </button>
-                    <div className="flex items-center space-x-2">
+                    <div className="hidden sm:flex items-center space-x-2">
                       <Volume2 size={16} />
-                      <div className="w-16 h-1 bg-white/30 rounded-full">
+                      <div className="w-12 sm:w-16 h-1 bg-white/30 rounded-full">
                         <div className="w-3/4 h-full bg-white rounded-full"></div>
                       </div>
                     </div>
                   </div>
 
-                  <div className="flex items-center space-x-4">
-                    <span className="text-sm font-poppins">
+                  <div className="flex items-center space-x-2 sm:space-x-4">
+                    <span className="text-xs sm:text-sm font-poppins">
                       {formatTime(currentTime)} / {formatTime(duration)}
                     </span>
-                    <button className="neuro-button p-2 text-white">
+                    <button className="neuro-button p-1.5 sm:p-2 text-white hidden sm:block">
                       <Maximize size={16} />
                     </button>
                   </div>
@@ -203,38 +202,39 @@ const VideoPlayer: React.FC = () => {
           </Card>
 
           {/* Video Info & Actions */}
-          <Card>
-            <div className="flex flex-col md:flex-row md:items-center justify-between mb-4">
-              <div className="flex-1 mb-4 md:mb-0">
-                <h2 className="text-xl md:text-2xl font-raleway font-bold text-text-primary mb-2">
+          <Card padding="sm">
+            <div className="flex flex-col space-y-3 sm:space-y-4">
+              <div className="flex-1">
+                <h2 className="text-lg sm:text-xl md:text-2xl font-raleway font-bold text-text-primary mb-2">
                   {chapter?.title}
                 </h2>
-                <p className="text-text-secondary font-poppins mb-2">
+                <p className="text-text-secondary font-poppins mb-2 text-sm">
                   Learn the fundamentals and build a strong foundation in this topic.
                 </p>
-                <div className="flex items-center space-x-4 text-sm text-text-secondary">
+                <div className="flex items-center space-x-4 text-xs sm:text-sm text-text-secondary">
                   <div className="flex items-center space-x-1">
-                    <Clock size={16} />
+                    <Clock size={14} />
                     <span>{chapter?.duration}</span>
                   </div>
                   <div className="flex items-center space-x-1">
-                    <Eye size={16} />
+                    <Eye size={14} />
                     <span>{chapter?.views || '0'}</span>
                   </div>
                 </div>
               </div>
               
               <div className="flex flex-wrap gap-2">
-                <Button onClick={openYouTube} variant="neuro" className="text-red-600">
-                  <Youtube size={16} className="mr-1" />
+                <Button onClick={openYouTube} variant="neuro" size="sm" className="text-red-600 flex-1 sm:flex-none">
+                  <Youtube size={14} className="mr-1" />
                   YouTube
                 </Button>
                 <Button
                   onClick={handleMarkComplete}
                   variant="neuro"
-                  className={isCompleted ? 'text-green-600' : 'text-text-primary'}
+                  size="sm"
+                  className={`flex-1 sm:flex-none ${isCompleted ? 'text-green-600' : 'text-text-primary'}`}
                 >
-                  <Check size={16} className="mr-1" />
+                  <Check size={14} className="mr-1" />
                   {isCompleted ? 'Completed' : 'Mark Done'}
                 </Button>
               </div>
@@ -243,22 +243,22 @@ const VideoPlayer: React.FC = () => {
 
           {/* Up Next Section */}
           {nextChapter && (
-            <Card>
-              <h3 className="text-lg font-raleway font-bold text-text-primary mb-4">
+            <Card padding="sm">
+              <h3 className="text-base sm:text-lg font-raleway font-bold text-text-primary mb-3">
                 Up Next
               </h3>
               <YouTubeVideoCard
                 video={nextChapter}
                 onClick={() => handleChapterSelect(nextChapter)}
-                className="max-w-sm"
+                layout="horizontal"
               />
             </Card>
           )}
 
           {/* Comments Section */}
-          <div className="space-y-4">
+          <div className="space-y-3">
             <div className="flex items-center justify-between">
-              <h3 className="text-lg font-raleway font-bold text-text-primary">
+              <h3 className="text-base sm:text-lg font-raleway font-bold text-text-primary">
                 Discussion
               </h3>
               <Button
@@ -276,11 +276,11 @@ const VideoPlayer: React.FC = () => {
 
         {/* Sidebar */}
         <div className={`w-full lg:w-80 ${showChapters ? 'block' : 'hidden lg:block'}`}>
-          <Card>
-            <h3 className="text-lg font-raleway font-bold text-text-primary mb-4">
+          <Card padding="sm">
+            <h3 className="text-base sm:text-lg font-raleway font-bold text-text-primary mb-4">
               Course Videos
             </h3>
-            <div className="space-y-3 max-h-96 overflow-y-auto">
+            <div className="space-y-2 max-h-96 overflow-y-auto">
               {chapters.map((chap: any, index: number) => (
                 <div
                   key={chap.id}
@@ -299,7 +299,7 @@ const VideoPlayer: React.FC = () => {
                       {chap.duration}
                     </span>
                   </div>
-                  <h4 className="font-poppins font-medium text-sm">
+                  <h4 className="font-poppins font-medium text-sm line-clamp-2">
                     {chap.title}
                   </h4>
                   {chap.completed && (
@@ -314,31 +314,18 @@ const VideoPlayer: React.FC = () => {
           </Card>
 
           {/* Suggested Videos */}
-          <Card className="mt-4">
-            <h3 className="text-lg font-raleway font-bold text-text-primary mb-4">
+          <Card className="mt-3 sm:mt-4" padding="sm">
+            <h3 className="text-base sm:text-lg font-raleway font-bold text-text-primary mb-4">
               More Videos
             </h3>
-            <div className="space-y-3">
+            <div className="space-y-2">
               {suggestedVideos.map((video) => (
-                <div
+                <YouTubeVideoCard
                   key={video.id}
-                  className="flex items-center space-x-3 neuro-card p-2 cursor-pointer hover:shadow-lg transition-all"
+                  video={video}
                   onClick={() => handleChapterSelect(video)}
-                >
-                  <img
-                    src={video.thumbnail || "/api/placeholder/80/60"}
-                    alt={video.title}
-                    className="w-16 h-12 object-cover rounded-lg"
-                  />
-                  <div className="flex-1 min-w-0">
-                    <h4 className="font-poppins font-medium text-sm text-text-primary truncate">
-                      {video.title}
-                    </h4>
-                    <p className="text-xs text-text-secondary">
-                      {video.duration}
-                    </p>
-                  </div>
-                </div>
+                  layout="horizontal"
+                />
               ))}
             </div>
           </Card>

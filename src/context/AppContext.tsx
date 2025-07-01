@@ -1,3 +1,4 @@
+
 import React, { createContext, useContext, useState, ReactNode } from 'react';
 
 interface Subject {
@@ -13,7 +14,7 @@ interface Chapter {
   videoUrl: string;
   duration: string;
   subjectId: string;
-  youtubeUrl?: string;
+  youtubeUrl: string;
   thumbnail?: string;
   views?: string;
   completed?: boolean;

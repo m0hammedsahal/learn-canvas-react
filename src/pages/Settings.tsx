@@ -2,6 +2,7 @@
 import React, { useState } from 'react';
 import { Bell, Shield, Palette, Globe, HelpCircle, LogOut, ChevronRight, Sun, Moon } from 'lucide-react';
 import { useAuth } from '@/context/AuthContext';
+import { useTheme } from '@/context/ThemeContext';
 import { useNavigate } from 'react-router-dom';
 import MobileHeader from '@/components/layout/MobileHeader';
 import MobileBottomNav from '@/components/layout/MobileBottomNav';
@@ -10,9 +11,9 @@ import Button from '@/components/common/Button';
 
 const Settings: React.FC = () => {
   const { logout } = useAuth();
+  const { isDarkMode, toggleTheme } = useTheme();
   const navigate = useNavigate();
   const [notifications, setNotifications] = useState(true);
-  const [darkMode, setDarkMode] = useState(false);
 
   const handleLogout = () => {
     logout();
@@ -31,11 +32,11 @@ const Settings: React.FC = () => {
           action: () => setNotifications(!notifications)
         },
         {
-          icon: darkMode ? Moon : Sun,
+          icon: isDarkMode ? Moon : Sun,
           label: 'Dark Mode',
-          value: darkMode,
+          value: isDarkMode,
           type: 'toggle',
-          action: () => setDarkMode(!darkMode)
+          action: toggleTheme
         },
         {
           icon: Globe,
@@ -63,7 +64,7 @@ const Settings: React.FC = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen" style={{ background: 'hsl(var(--neuro-bg))' }}>
       <MobileHeader showBack={true} title="Settings" />
       
       <div className="px-4 py-6 pb-20">
@@ -74,11 +75,11 @@ const Settings: React.FC = () => {
                 {section.title}
               </h2>
               <Card padding="sm">
-                <div className="divide-y divide-gray-100">
+                <div className="divide-y divide-gray-100 dark:divide-gray-700">
                   {section.items.map((item, index) => (
                     <div key={index} className="flex items-center justify-between py-4 px-2">
                       <div className="flex items-center space-x-3">
-                        <div className="w-8 h-8 bg-primary-100 rounded-lg flex items-center justify-center">
+                        <div className="w-8 h-8 bg-primary/10 rounded-lg flex items-center justify-center">
                           <item.icon className="text-primary" size={16} />
                         </div>
                         <span className="font-poppins text-text-primary">{item.label}</span>
@@ -88,7 +89,7 @@ const Settings: React.FC = () => {
                         <button
                           onClick={item.action}
                           className={`w-12 h-6 rounded-full transition-colors ${
-                            item.value ? 'bg-primary' : 'bg-gray-300'
+                            item.value ? 'bg-primary' : 'bg-gray-300 dark:bg-gray-600'
                           }`}
                         >
                           <div className={`w-5 h-5 bg-white rounded-full transition-transform ${
@@ -118,7 +119,7 @@ const Settings: React.FC = () => {
           <Card padding="sm">
             <Button
               variant="outline"
-              className="w-full justify-start text-red-600 border-red-200 hover:bg-red-50"
+              className="w-full justify-start text-red-600 border-red-200 hover:bg-red-50 dark:border-red-800 dark:hover:bg-red-900/20"
               onClick={handleLogout}
             >
               <LogOut size={16} className="mr-3" />

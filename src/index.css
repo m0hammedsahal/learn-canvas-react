@@ -48,10 +48,14 @@ All colors MUST be HSL.
     --sidebar-border: 220 13% 91%;
     --sidebar-ring: 217.2 91.2% 59.8%;
 
-    /* Neumorphism Variables */
+    /* Neumorphism Variables - Light Mode */
     --neuro-bg: 230 25% 92%;
     --neuro-shadow-light: 0 0% 100%;
     --neuro-shadow-dark: 220 15% 80%;
+    
+    /* Text Colors */
+    --text-primary: 222.2 84% 4.9%;
+    --text-secondary: 215.4 16.3% 46.9%;
   }
 
   .dark {
@@ -95,6 +99,10 @@ All colors MUST be HSL.
     --neuro-bg: 220 15% 15%;
     --neuro-shadow-light: 220 15% 25%;
     --neuro-shadow-dark: 220 15% 5%;
+    
+    /* Dark Text Colors */
+    --text-primary: 210 40% 98%;
+    --text-secondary: 215 20.2% 65.1%;
   }
 }
 
@@ -106,6 +114,8 @@ All colors MUST be HSL.
   body {
     @apply bg-background text-foreground;
     background: hsl(var(--neuro-bg));
+    color: hsl(var(--text-primary));
+    transition: background-color 0.3s ease, color 0.3s ease;
   }
 }
 
@@ -117,6 +127,7 @@ All colors MUST be HSL.
     box-shadow: 
       8px 8px 16px hsl(var(--neuro-shadow-dark)),
       -8px -8px 16px hsl(var(--neuro-shadow-light));
+    transition: all 0.3s ease;
   }
 
   .neuro-inset {
@@ -125,6 +136,7 @@ All colors MUST be HSL.
     box-shadow: 
       inset 8px 8px 16px hsl(var(--neuro-shadow-dark)),
       inset -8px -8px 16px hsl(var(--neuro-shadow-light));
+    transition: all 0.3s ease;
   }
 
   .neuro-button {
@@ -157,6 +169,8 @@ All colors MUST be HSL.
       inset 4px 4px 8px hsl(var(--neuro-shadow-dark)),
       inset -4px -4px 8px hsl(var(--neuro-shadow-light));
     border: none;
+    color: hsl(var(--text-primary));
+    transition: all 0.3s ease;
   }
 
   .neuro-input:focus {
@@ -165,5 +179,28 @@ All colors MUST be HSL.
       inset 6px 6px 12px hsl(var(--neuro-shadow-dark)),
       inset -6px -6px 12px hsl(var(--neuro-shadow-light)),
       0 0 0 2px hsl(var(--primary) / 0.2);
+  }
+
+  .text-text-primary {
+    color: hsl(var(--text-primary));
+  }
+
+  .text-text-secondary {
+    color: hsl(var(--text-secondary));
+  }
+
+  /* Line clamping utilities */
+  .line-clamp-2 {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .line-clamp-3 {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
   }
 }
