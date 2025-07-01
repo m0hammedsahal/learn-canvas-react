@@ -103,6 +103,13 @@ const VideoPlayer: React.FC = () => {
     }
   };
 
+  const handleFullscreen = () => {
+    const elem = document.documentElement;
+    if (elem.requestFullscreen) {
+      elem.requestFullscreen();
+    }
+  };
+
   return (
     <div className="min-h-screen" style={{ background: 'hsl(var(--neuro-bg))' }}>
       {/* Header */}
@@ -192,7 +199,7 @@ const VideoPlayer: React.FC = () => {
                     <span className="text-xs sm:text-sm font-poppins">
                       {formatTime(currentTime)} / {formatTime(duration)}
                     </span>
-                    <button className="neuro-button p-1.5 sm:p-2 text-white hidden sm:block">
+                    <button onClick={handleFullscreen} className="neuro-button p-1.5 sm:p-2 text-white">
                       <Maximize size={16} />
                     </button>
                   </div>
@@ -255,7 +262,6 @@ const VideoPlayer: React.FC = () => {
             </Card>
           )}
 
-          {/* Comments Section */}
           <div className="space-y-3">
             <div className="flex items-center justify-between">
               <h3 className="text-base sm:text-lg font-raleway font-bold text-text-primary">

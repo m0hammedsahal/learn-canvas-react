@@ -15,7 +15,7 @@ const Dashboard: React.FC = () => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const { selectedCourse, setSelectedSubject, setCurrentChapter } = useApp();
   const navigate = useNavigate();
-  const [showAllVideos, setShowAllVideos] = useState<Record<string, boolean>>({});
+  const [expandedSubjects, setExpandedSubjects] = useState<Record<string, boolean>>({});
 
   const handleSubjectClick = (subject: any) => {
     setSelectedSubject(subject);
@@ -26,8 +26,8 @@ const Dashboard: React.FC = () => {
     navigate(`/video/${chapter.id}`);
   };
 
-  const toggleShowAll = (subjectId: string) => {
-    setShowAllVideos(prev => ({
+  const toggleSubjectExpansion = (subjectId: string) => {
+    setExpandedSubjects(prev => ({
       ...prev,
       [subjectId]: !prev[subjectId]
     }));
@@ -66,6 +66,15 @@ const Dashboard: React.FC = () => {
           youtubeUrl: 'https://youtube.com/watch?v=example3',
           thumbnail: '/api/placeholder/320/180',
           views: '695'
+        },
+        { 
+          id: 'c4', 
+          title: 'Advanced Calculus', 
+          duration: '52:10', 
+          completed: false,
+          youtubeUrl: 'https://youtube.com/watch?v=example4',
+          thumbnail: '/api/placeholder/320/180',
+          views: '1.1K'
         }
       ]
     },
@@ -75,22 +84,31 @@ const Dashboard: React.FC = () => {
       description: 'Physics, Chemistry, Biology',
       chapters: [
         { 
-          id: 'c4', 
+          id: 'c5', 
           title: 'Chemical Reactions', 
           duration: '42:20', 
           completed: false,
-          youtubeUrl: 'https://youtube.com/watch?v=example4',
+          youtubeUrl: 'https://youtube.com/watch?v=example5',
           thumbnail: '/api/placeholder/320/180',
           views: '1.8K'
         },
         { 
-          id: 'c5', 
+          id: 'c6', 
           title: 'Newton\'s Laws', 
           duration: '35:45', 
           completed: false,
-          youtubeUrl: 'https://youtube.com/watch?v=example5',
+          youtubeUrl: 'https://youtube.com/watch?v=example6',
           thumbnail: '/api/placeholder/320/180',
           views: '2.1K'
+        },
+        { 
+          id: 'c7', 
+          title: 'Cell Biology', 
+          duration: '48:30', 
+          completed: false,
+          youtubeUrl: 'https://youtube.com/watch?v=example7',
+          thumbnail: '/api/placeholder/320/180',
+          views: '1.5K'
         }
       ]
     }
@@ -172,50 +190,56 @@ const Dashboard: React.FC = () => {
 
           {/* Subjects with YouTube Videos */}
           <div className="space-y-6">
-            {subjects.map((subject) => (
-              <Card key={subject.id} className="animate-fade-in" padding="sm">
-                <div className="flex items-start justify-between mb-6">
-                  <div className="flex-1">
-                    <h3 className="text-lg md:text-xl font-raleway font-bold text-text-primary mb-1">
-                      {subject.name}
-                    </h3>
-                    <p className="text-text-secondary font-poppins text-sm">
-                      {subject.description}
-                    </p>
+            {subjects.map((subject) => {
+              const isExpanded = expandedSubjects[subject.id] || false;
+              const visibleChapters = isExpanded ? subject.chapters : subject.chapters.slice(0, 2);
+              
+              return (
+                <Card key={subject.id} className="animate-fade-in" padding="sm">
+                  <div className="flex items-start justify-between mb-6">
+                    <div className="flex-1">
+                      <h3 className="text-lg md:text-xl font-raleway font-bold text-text-primary mb-1">
+                        {subject.name}
+                      </h3>
+                      <p className="text-text-secondary font-poppins text-sm">
+                        {subject.description}
+                      </p>
+                    </div>
+                    <div className="neuro-button w-10 h-10 md:w-12 md:h-12 rounded-full flex items-center justify-center ml-3">
+                      <BookOpen className="text-primary" size={20} />
+                    </div>
                   </div>
-                  <div className="neuro-button w-10 h-10 md:w-12 md:h-12 rounded-full flex items-center justify-center ml-3">
-                    <BookOpen className="text-primary" size={20} />
-                  </div>
-                </div>
 
-                {/* YouTube Video Grid */}
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mb-6">
-                  {subject.chapters
-                    .slice(0, showAllVideos[subject.id] ? undefined : 2)
-                    .map((chapter: any) => (
+                  {/* YouTube Video Grid */}
+                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mb-6">
+                    {visibleChapters.map((chapter: any) => (
                       <YouTubeVideoCard
                         key={chapter.id}
                         video={chapter}
                         onClick={() => handleChapterClick(chapter)}
                       />
                     ))}
-                </div>
+                  </div>
 
-                {/* View All Button */}
-                <div className="flex justify-center">
-                  <Button
-                    onClick={() => toggleShowAll(subject.id)}
-                    variant="neuro"
-                    size="sm"
-                  >
-                    {showAllVideos[subject.id] 
-                      ? 'Show Less' 
-                      : `View All (${subject.chapters.length})`
-                    }
-                  </Button>
-                </div>
-              </Card>
-            ))}
+                  {/* View All/Show Less Button */}
+                  {subject.chapters.length > 2 && (
+                    <div className="flex justify-center">
+                      <Button
+                        onClick={() => toggleSubjectExpansion(subject.id)}
+                        variant="neuro"
+                        size="sm"
+                        className="px-6"
+                      >
+                        {isExpanded 
+                          ? 'Show Less' 
+                          : `View All (${subject.chapters.length})`
+                        }
+                      </Button>
+                    </div>
+                  )}
+                </Card>
+              );
+            })}
           </div>
 
           {/* Achievement Card */}

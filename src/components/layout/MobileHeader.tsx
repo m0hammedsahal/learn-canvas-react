@@ -45,23 +45,23 @@ const MobileHeader: React.FC<MobileHeaderProps> = ({
   };
 
   return (
-    <header className="bg-white shadow-sm border-b border-gray-100 px-4 py-3 sticky top-0 z-40 md:hidden">
+    <header className="neuro-card m-2 p-3 sticky top-2 z-40 md:hidden">
       <div className="flex items-center justify-between">
         <div className="flex items-center space-x-3">
           {showBack && (
             <button
               onClick={() => navigate(-1)}
-              className="p-2 hover:bg-gray-100 rounded-full transition-colors"
+              className="neuro-button p-2 text-text-primary"
             >
-              <ArrowLeft size={20} className="text-gray-600" />
+              <ArrowLeft size={20} />
             </button>
           )}
           {showMenu && onMenuClick && (
             <button
               onClick={onMenuClick}
-              className="p-2 hover:bg-gray-100 rounded-full transition-colors"
+              className="neuro-button p-2 text-text-primary"
             >
-              <Menu size={20} className="text-gray-600" />
+              <Menu size={20} />
             </button>
           )}
           <h1 className="text-lg font-raleway font-semibold text-text-primary">
@@ -73,15 +73,15 @@ const MobileHeader: React.FC<MobileHeaderProps> = ({
           {location.pathname !== '/notifications' && (
             <button 
               onClick={handleNotificationClick}
-              className="p-2 hover:bg-gray-100 rounded-full transition-colors relative"
+              className="neuro-button p-2 text-text-primary relative"
             >
-              <Bell size={18} className="text-gray-600" />
+              <Bell size={18} />
               <span className="absolute -top-1 -right-1 w-4 h-4 bg-red-500 rounded-full text-xs text-white flex items-center justify-center">
                 2
               </span>
             </button>
           )}
-          <div className="w-8 h-8 bg-primary-100 rounded-full flex items-center justify-center">
+          <div className="neuro-button w-8 h-8 rounded-full flex items-center justify-center">
             <User size={16} className="text-primary" />
           </div>
         </div>

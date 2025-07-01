@@ -96,13 +96,13 @@ All colors MUST be HSL.
     --sidebar-ring: 217.2 91.2% 59.8%;
 
     /* Dark Neumorphism Variables */
-    --neuro-bg: 220 15% 15%;
-    --neuro-shadow-light: 220 15% 25%;
-    --neuro-shadow-dark: 220 15% 5%;
+    --neuro-bg: 220 15% 18%;
+    --neuro-shadow-light: 220 15% 28%;
+    --neuro-shadow-dark: 220 15% 8%;
     
-    /* Dark Text Colors */
+    /* Dark Text Colors - Better contrast */
     --text-primary: 210 40% 98%;
-    --text-secondary: 215 20.2% 65.1%;
+    --text-secondary: 215 20.2% 75%;
   }
 }
 
@@ -187,6 +187,35 @@ All colors MUST be HSL.
 
   .text-text-secondary {
     color: hsl(var(--text-secondary));
+  }
+
+  /* Dark mode specific overrides */
+  .dark .text-gray-600 {
+    color: hsl(var(--text-secondary));
+  }
+
+  .dark .text-gray-500 {
+    color: hsl(var(--text-secondary));
+  }
+
+  .dark .bg-gray-50 {
+    background: hsl(var(--neuro-bg));
+  }
+
+  .dark .bg-gray-100 {
+    background: hsl(220 15% 25%);
+  }
+
+  .dark .border-gray-300 {
+    border-color: hsl(220 15% 30%);
+  }
+
+  .dark .border-gray-100 {
+    border-color: hsl(220 15% 25%);
+  }
+
+  .dark .border-gray-200 {
+    border-color: hsl(220 15% 28%);
   }
 
   /* Line clamping utilities */

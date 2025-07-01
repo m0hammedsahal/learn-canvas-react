@@ -11,10 +11,10 @@ const Profile: React.FC = () => {
   const { user, updateProfile } = useAuth();
   const [isEditing, setIsEditing] = useState(false);
   const [formData, setFormData] = useState({
-    name: user?.name || '',
-    email: user?.email || '',
-    contact: user?.contact || '',
-    address: user?.address || ''
+    name: user?.name || 'John Doe',
+    email: user?.email || 'john.doe@example.com',
+    contact: user?.contact || '+1 234 567 8900',
+    address: user?.address || '123 Main Street, City, State 12345'
   });
   const [isLoading, setIsLoading] = useState(false);
 
@@ -37,8 +37,18 @@ const Profile: React.FC = () => {
     }, 1000);
   };
 
+  const handleCancel = () => {
+    setFormData({
+      name: user?.name || 'John Doe',
+      email: user?.email || 'john.doe@example.com',
+      contact: user?.contact || '+1 234 567 8900',
+      address: user?.address || '123 Main Street, City, State 12345'
+    });
+    setIsEditing(false);
+  };
+
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen" style={{ background: 'hsl(var(--neuro-bg))' }}>
       <MobileHeader showBack={true} />
       
       <div className="px-4 py-6 pb-20">
@@ -46,14 +56,14 @@ const Profile: React.FC = () => {
           {/* Profile Header */}
           <Card className="text-center">
             <div className="p-6">
-              <div className="w-20 h-20 bg-primary-100 rounded-full flex items-center justify-center mx-auto mb-4">
+              <div className="neuro-button w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-4">
                 <User className="text-primary" size={32} />
               </div>
               <h2 className="text-2xl font-raleway font-bold text-text-primary mb-1">
-                {user?.name || 'User Name'}
+                {formData.name}
               </h2>
               <p className="text-text-secondary font-poppins">
-                {user?.email || 'user@example.com'}
+                {formData.email}
               </p>
               <Button
                 size="sm"
@@ -88,10 +98,8 @@ const Profile: React.FC = () => {
                       onChange={handleInputChange}
                       disabled={!isEditing}
                       placeholder="Enter your full name"
-                      className={`w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg font-poppins ${
-                        isEditing 
-                          ? 'focus:ring-2 focus:ring-primary focus:border-transparent' 
-                          : 'bg-gray-50 cursor-not-allowed'
+                      className={`neuro-input w-full pl-10 pr-4 py-3 font-poppins ${
+                        !isEditing && 'cursor-not-allowed opacity-70'
                       }`}
                       required
                     />
@@ -111,10 +119,8 @@ const Profile: React.FC = () => {
                       onChange={handleInputChange}
                       disabled={!isEditing}
                       placeholder="Enter your email"
-                      className={`w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg font-poppins ${
-                        isEditing 
-                          ? 'focus:ring-2 focus:ring-primary focus:border-transparent' 
-                          : 'bg-gray-50 cursor-not-allowed'
+                      className={`neuro-input w-full pl-10 pr-4 py-3 font-poppins ${
+                        !isEditing && 'cursor-not-allowed opacity-70'
                       }`}
                       required
                     />
@@ -134,10 +140,8 @@ const Profile: React.FC = () => {
                       onChange={handleInputChange}
                       disabled={!isEditing}
                       placeholder="Enter your phone number"
-                      className={`w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg font-poppins ${
-                        isEditing 
-                          ? 'focus:ring-2 focus:ring-primary focus:border-transparent' 
-                          : 'bg-gray-50 cursor-not-allowed'
+                      className={`neuro-input w-full pl-10 pr-4 py-3 font-poppins ${
+                        !isEditing && 'cursor-not-allowed opacity-70'
                       }`}
                     />
                   </div>
@@ -156,25 +160,32 @@ const Profile: React.FC = () => {
                       disabled={!isEditing}
                       placeholder="Enter your address"
                       rows={3}
-                      className={`w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg font-poppins resize-none ${
-                        isEditing 
-                          ? 'focus:ring-2 focus:ring-primary focus:border-transparent' 
-                          : 'bg-gray-50 cursor-not-allowed'
+                      className={`neuro-input w-full pl-10 pr-4 py-3 font-poppins resize-none ${
+                        !isEditing && 'cursor-not-allowed opacity-70'
                       }`}
                     />
                   </div>
                 </div>
 
                 {isEditing && (
-                  <div className="pt-4">
+                  <div className="pt-4 flex space-x-3">
                     <Button
                       type="submit"
                       size="lg"
-                      className="w-full flex items-center justify-center space-x-2"
+                      className="flex-1 flex items-center justify-center space-x-2"
                       isLoading={isLoading}
                     >
                       <Save size={20} />
                       <span>Update Profile</span>
+                    </Button>
+                    <Button
+                      type="button"
+                      variant="outline"
+                      size="lg"
+                      onClick={handleCancel}
+                      className="flex-1"
+                    >
+                      Cancel
                     </Button>
                   </div>
                 )}
