@@ -18,10 +18,10 @@ const Courses: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-primary-50 to-white">
+    <div className="min-h-screen" style={{ background: 'hsl(var(--neuro-bg))' }}>
       <MobileHeader showBack={true} />
       
-      <div className="px-4 py-6 pb-20 md:px-6 md:py-12">
+      <div className="px-4 py-6 pb-24 md:px-6 md:py-12">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-8 md:mb-12 animate-fade-in">
             <h1 className="text-2xl md:text-5xl font-raleway font-bold text-text-primary mb-3 md:mb-4">
@@ -44,14 +44,14 @@ const Courses: React.FC = () => {
                 padding="sm"
               >
                 {index === 0 && (
-                  <div className="absolute top-3 right-3 bg-accent text-white px-2 py-1 rounded-full text-xs font-semibold">
+                  <div className="absolute top-3 right-3 neuro-button bg-accent text-white px-2 py-1 rounded-full text-xs font-semibold">
                     Popular
                   </div>
                 )}
 
                 <div className="p-4 md:p-6">
                   <div className="flex items-center mb-4 md:mb-6">
-                    <div className="w-12 h-12 md:w-16 md:h-16 bg-primary-100 rounded-xl flex items-center justify-center mr-3 md:mr-4">
+                    <div className="neuro-button w-12 h-12 md:w-16 md:h-16 rounded-xl flex items-center justify-center mr-3 md:mr-4">
                       <GraduationCap className="text-primary" size={24} />
                     </div>
                     <div className="flex-1 min-w-0">
@@ -125,11 +125,11 @@ const Courses: React.FC = () => {
             ))}
           </div>
 
-          {/* Mobile-Optimized Help Section */}
+          {/* Help Section */}
           <div className="mt-8 md:mt-12">
             <Card className="max-w-2xl mx-auto" padding="sm">
               <div className="p-4 md:p-6 text-center">
-                <div className="w-12 h-12 bg-primary-100 rounded-full flex items-center justify-center mx-auto mb-3">
+                <div className="neuro-button w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-3">
                   <Star className="text-primary" size={20} />
                 </div>
                 <h3 className="text-lg md:text-2xl font-raleway font-bold text-text-primary mb-2 md:mb-4">

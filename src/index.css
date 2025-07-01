@@ -1,3 +1,4 @@
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -39,20 +40,18 @@ All colors MUST be HSL.
     --radius: 0.5rem;
 
     --sidebar-background: 0 0% 98%;
-
     --sidebar-foreground: 240 5.3% 26.1%;
-
     --sidebar-primary: 240 5.9% 10%;
-
     --sidebar-primary-foreground: 0 0% 98%;
-
     --sidebar-accent: 240 4.8% 95.9%;
-
     --sidebar-accent-foreground: 240 5.9% 10%;
-
     --sidebar-border: 220 13% 91%;
-
     --sidebar-ring: 217.2 91.2% 59.8%;
+
+    /* Neumorphism Variables */
+    --neuro-bg: 230 25% 92%;
+    --neuro-shadow-light: 0 0% 100%;
+    --neuro-shadow-dark: 220 15% 80%;
   }
 
   .dark {
@@ -91,6 +90,11 @@ All colors MUST be HSL.
     --sidebar-accent-foreground: 240 4.8% 95.9%;
     --sidebar-border: 240 3.7% 15.9%;
     --sidebar-ring: 217.2 91.2% 59.8%;
+
+    /* Dark Neumorphism Variables */
+    --neuro-bg: 220 15% 15%;
+    --neuro-shadow-light: 220 15% 25%;
+    --neuro-shadow-dark: 220 15% 5%;
   }
 }
 
@@ -101,5 +105,65 @@ All colors MUST be HSL.
 
   body {
     @apply bg-background text-foreground;
+    background: hsl(var(--neuro-bg));
+  }
+}
+
+/* Neumorphism Utility Classes */
+@layer components {
+  .neuro-card {
+    background: hsl(var(--neuro-bg));
+    border-radius: 20px;
+    box-shadow: 
+      8px 8px 16px hsl(var(--neuro-shadow-dark)),
+      -8px -8px 16px hsl(var(--neuro-shadow-light));
+  }
+
+  .neuro-inset {
+    background: hsl(var(--neuro-bg));
+    border-radius: 20px;
+    box-shadow: 
+      inset 8px 8px 16px hsl(var(--neuro-shadow-dark)),
+      inset -8px -8px 16px hsl(var(--neuro-shadow-light));
+  }
+
+  .neuro-button {
+    background: hsl(var(--neuro-bg));
+    border-radius: 12px;
+    box-shadow: 
+      4px 4px 8px hsl(var(--neuro-shadow-dark)),
+      -4px -4px 8px hsl(var(--neuro-shadow-light));
+    transition: all 0.2s ease;
+  }
+
+  .neuro-button:hover {
+    box-shadow: 
+      6px 6px 12px hsl(var(--neuro-shadow-dark)),
+      -6px -6px 12px hsl(var(--neuro-shadow-light));
+    transform: translateY(-1px);
+  }
+
+  .neuro-button:active {
+    box-shadow: 
+      inset 2px 2px 4px hsl(var(--neuro-shadow-dark)),
+      inset -2px -2px 4px hsl(var(--neuro-shadow-light));
+    transform: translateY(0);
+  }
+
+  .neuro-input {
+    background: hsl(var(--neuro-bg));
+    border-radius: 12px;
+    box-shadow: 
+      inset 4px 4px 8px hsl(var(--neuro-shadow-dark)),
+      inset -4px -4px 8px hsl(var(--neuro-shadow-light));
+    border: none;
+  }
+
+  .neuro-input:focus {
+    outline: none;
+    box-shadow: 
+      inset 6px 6px 12px hsl(var(--neuro-shadow-dark)),
+      inset -6px -6px 12px hsl(var(--neuro-shadow-light)),
+      0 0 0 2px hsl(var(--primary) / 0.2);
   }
 }

@@ -28,10 +28,10 @@ const SearchBar: React.FC<SearchBarProps> = ({
 
   return (
     <div className={`relative ${className}`}>
-      <div className={`relative flex items-center bg-gray-100 rounded-lg transition-all ${
-        isFocused ? 'ring-2 ring-primary bg-white border border-primary' : ''
+      <div className={`relative flex items-center neuro-input transition-all ${
+        isFocused ? 'shadow-lg' : ''
       }`}>
-        <Search className="absolute left-3 text-gray-400" size={18} />
+        <Search className="absolute left-3 text-text-secondary" size={18} />
         <input
           type="text"
           value={query}
@@ -39,14 +39,14 @@ const SearchBar: React.FC<SearchBarProps> = ({
           onFocus={() => setIsFocused(true)}
           onBlur={() => setIsFocused(false)}
           placeholder={placeholder}
-          className="w-full pl-10 pr-10 py-3 bg-transparent font-poppins text-text-primary placeholder-gray-400 focus:outline-none"
+          className="w-full pl-10 pr-10 py-3 bg-transparent font-poppins text-text-primary placeholder-text-secondary focus:outline-none"
         />
         {query && (
           <button
             onClick={clearSearch}
-            className="absolute right-3 text-gray-400 hover:text-gray-600"
+            className="absolute right-3 text-text-secondary hover:text-text-primary neuro-button w-6 h-6 flex items-center justify-center"
           >
-            <X size={18} />
+            <X size={14} />
           </button>
         )}
       </div>

@@ -13,7 +13,7 @@ const MobileBottomNav: React.FC = () => {
   ];
 
   return (
-    <nav className="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 px-4 py-2 z-40 md:hidden">
+    <nav className="fixed bottom-0 left-0 right-0 neuro-card m-4 px-4 py-3 z-40 md:hidden">
       <div className="flex justify-around">
         {navItems.map((item) => (
           <NavLink
@@ -21,10 +21,10 @@ const MobileBottomNav: React.FC = () => {
             to={item.to}
             className={({ isActive }) =>
               cn(
-                'flex flex-col items-center space-y-1 px-3 py-2 rounded-lg transition-colors min-w-0',
+                'flex flex-col items-center space-y-1 px-3 py-2 neuro-button transition-all min-w-0',
                 isActive
-                  ? 'text-primary bg-primary-50'
-                  : 'text-gray-500 hover:text-gray-700'
+                  ? 'text-primary shadow-lg'
+                  : 'text-text-secondary hover:text-text-primary'
               )
             }
           >
