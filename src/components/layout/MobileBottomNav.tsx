@@ -9,7 +9,7 @@ const MobileBottomNav: React.FC = () => {
     { to: '/dashboard', icon: Home, label: 'Home' },
     { to: '/courses', icon: BookOpen, label: 'Courses' },
     { to: '/profile', icon: User, label: 'Profile' },
-    { to: '/profile', icon: Settings, label: 'Settings' }
+    { to: '/settings', icon: Settings, label: 'Settings' }
   ];
 
   return (

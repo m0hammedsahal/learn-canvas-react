@@ -31,9 +31,17 @@ const MobileHeader: React.FC<MobileHeaderProps> = ({
         return 'Choose Course';
       case '/profile':
         return 'Profile';
+      case '/settings':
+        return 'Settings';
+      case '/notifications':
+        return 'Notifications';
       default:
         return 'EduLearning';
     }
+  };
+
+  const handleNotificationClick = () => {
+    navigate('/notifications');
   };
 
   return (
@@ -62,12 +70,17 @@ const MobileHeader: React.FC<MobileHeaderProps> = ({
         </div>
 
         <div className="flex items-center space-x-2">
-          <button className="p-2 hover:bg-gray-100 rounded-full transition-colors relative">
-            <Bell size={18} className="text-gray-600" />
-            <span className="absolute -top-1 -right-1 w-4 h-4 bg-red-500 rounded-full text-xs text-white flex items-center justify-center">
-              2
-            </span>
-          </button>
+          {location.pathname !== '/notifications' && (
+            <button 
+              onClick={handleNotificationClick}
+              className="p-2 hover:bg-gray-100 rounded-full transition-colors relative"
+            >
+              <Bell size={18} className="text-gray-600" />
+              <span className="absolute -top-1 -right-1 w-4 h-4 bg-red-500 rounded-full text-xs text-white flex items-center justify-center">
+                2
+              </span>
+            </button>
+          )}
           <div className="w-8 h-8 bg-primary-100 rounded-full flex items-center justify-center">
             <User size={16} className="text-primary" />
           </div>

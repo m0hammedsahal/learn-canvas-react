@@ -15,6 +15,8 @@ import Courses from "./pages/Courses";
 import Payment from "./pages/Payment";
 import Dashboard from "./pages/Dashboard";
 import Profile from "./pages/Profile";
+import Settings from "./pages/Settings";
+import Notifications from "./pages/Notifications";
 import VideoPlayer from "./pages/VideoPlayer";
 
 // Admin Pages
@@ -44,6 +46,8 @@ const App = () => (
               <Route path="/payment" element={<Payment />} />
               <Route path="/dashboard" element={<Dashboard />} />
               <Route path="/profile" element={<Profile />} />
+              <Route path="/settings" element={<Settings />} />
+              <Route path="/notifications" element={<Notifications />} />
               <Route path="/video/:chapterId" element={<VideoPlayer />} />
               
               {/* Admin Routes */}
