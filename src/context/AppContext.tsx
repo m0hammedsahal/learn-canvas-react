@@ -1,4 +1,3 @@
-
 import React, { createContext, useContext, useState, ReactNode } from 'react';
 
 interface Subject {
@@ -14,6 +13,10 @@ interface Chapter {
   videoUrl: string;
   duration: string;
   subjectId: string;
+  youtubeUrl?: string;
+  thumbnail?: string;
+  views?: string;
+  completed?: boolean;
 }
 
 interface Course {
@@ -50,8 +53,28 @@ const mockCourses: Course[] = [
         name: 'Mathematics',
         description: 'Complete Math curriculum for LSS',
         chapters: [
-          { id: 'c1', title: 'Algebra Basics', videoUrl: '/videos/algebra.mp4', duration: '45:30', subjectId: 's1' },
-          { id: 'c2', title: 'Geometry Fundamentals', videoUrl: '/videos/geometry.mp4', duration: '38:15', subjectId: 's1' }
+          { 
+            id: 'c1', 
+            title: 'Algebra Basics', 
+            videoUrl: '/videos/algebra.mp4', 
+            duration: '45:30', 
+            subjectId: 's1',
+            youtubeUrl: 'https://youtube.com/watch?v=algebra-basics',
+            thumbnail: '/api/placeholder/320/180',
+            views: '1.2K',
+            completed: true
+          },
+          { 
+            id: 'c2', 
+            title: 'Geometry Fundamentals', 
+            videoUrl: '/videos/geometry.mp4', 
+            duration: '38:15', 
+            subjectId: 's1',
+            youtubeUrl: 'https://youtube.com/watch?v=geometry-fundamentals',
+            thumbnail: '/api/placeholder/320/180',
+            views: '856',
+            completed: false
+          }
         ]
       },
       {
@@ -59,8 +82,28 @@ const mockCourses: Course[] = [
         name: 'Science',
         description: 'Physics, Chemistry, and Biology',
         chapters: [
-          { id: 'c3', title: 'Chemical Reactions', videoUrl: '/videos/chemistry.mp4', duration: '42:20', subjectId: 's2' },
-          { id: 'c4', title: 'Newton\'s Laws', videoUrl: '/videos/physics.mp4', duration: '35:45', subjectId: 's2' }
+          { 
+            id: 'c3', 
+            title: 'Chemical Reactions', 
+            videoUrl: '/videos/chemistry.mp4', 
+            duration: '42:20', 
+            subjectId: 's2',
+            youtubeUrl: 'https://youtube.com/watch?v=chemical-reactions',
+            thumbnail: '/api/placeholder/320/180',
+            views: '695',
+            completed: false
+          },
+          { 
+            id: 'c4', 
+            title: 'Newton\'s Laws', 
+            videoUrl: '/videos/physics.mp4', 
+            duration: '35:45', 
+            subjectId: 's2',
+            youtubeUrl: 'https://youtube.com/watch?v=newtons-laws',
+            thumbnail: '/api/placeholder/320/180',
+            views: '542',
+            completed: false
+          }
         ]
       }
     ]
@@ -76,7 +119,17 @@ const mockCourses: Course[] = [
         name: 'Advanced Mathematics',
         description: 'Advanced Math concepts for USS',
         chapters: [
-          { id: 'c5', title: 'Calculus Introduction', videoUrl: '/videos/calculus.mp4', duration: '52:10', subjectId: 's3' }
+          { 
+            id: 'c5', 
+            title: 'Calculus Introduction', 
+            videoUrl: '/videos/calculus.mp4', 
+            duration: '52:10', 
+            subjectId: 's3',
+            youtubeUrl: 'https://youtube.com/watch?v=calculus-intro',
+            thumbnail: '/api/placeholder/320/180',
+            views: '1.8K',
+            completed: false
+          }
         ]
       }
     ]
