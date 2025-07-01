@@ -8,7 +8,7 @@ interface YouTubeVideoCardProps {
     id: string;
     title: string;
     duration: string;
-    thumbnail: string;
+    thumbnail?: string;
     youtubeUrl: string;
     views?: string;
     completed?: boolean;
