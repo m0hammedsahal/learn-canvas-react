@@ -21,12 +21,13 @@ const MobileBottomNav: React.FC = () => {
             to={item.to}
             className={({ isActive }) =>
               cn(
-                'flex flex-col items-center space-y-1 px-3 py-2 neuro-button transition-all min-w-0',
+                'flex flex-col items-center space-y-1 px-3 py-2 neuro-button transition-all min-w-0 hover:text-primary',
                 isActive
-                  ? 'text-primary shadow-lg'
-                  : 'text-text-secondary hover:text-text-primary'
+                  ? 'text-primary shadow-lg transform scale-105'
+                  : 'text-text-secondary'
               )
             }
+            aria-label={item.label}
           >
             <item.icon size={20} />
             <span className="text-xs font-poppins truncate">{item.label}</span>

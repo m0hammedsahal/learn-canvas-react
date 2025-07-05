@@ -44,6 +44,10 @@ const MobileHeader: React.FC<MobileHeaderProps> = ({
     navigate('/notifications');
   };
 
+  const handleProfileClick = () => {
+    navigate('/profile');
+  };
+
   return (
     <header className="neuro-card m-2 p-3 sticky top-2 z-40 md:hidden">
       <div className="flex items-center justify-between">
@@ -51,7 +55,8 @@ const MobileHeader: React.FC<MobileHeaderProps> = ({
           {showBack && (
             <button
               onClick={() => navigate(-1)}
-              className="neuro-button p-2 text-text-primary"
+              className="neuro-button p-2 text-text-primary hover:text-primary transition-colors"
+              aria-label="Go back"
             >
               <ArrowLeft size={20} />
             </button>
@@ -59,12 +64,13 @@ const MobileHeader: React.FC<MobileHeaderProps> = ({
           {showMenu && onMenuClick && (
             <button
               onClick={onMenuClick}
-              className="neuro-button p-2 text-text-primary"
+              className="neuro-button p-2 text-text-primary hover:text-primary transition-colors"
+              aria-label="Open menu"
             >
               <Menu size={20} />
             </button>
           )}
-          <h1 className="text-lg font-raleway font-semibold text-text-primary">
+          <h1 className="text-lg font-raleway font-semibold text-text-primary truncate">
             {getPageTitle()}
           </h1>
         </div>
@@ -73,17 +79,22 @@ const MobileHeader: React.FC<MobileHeaderProps> = ({
           {location.pathname !== '/notifications' && (
             <button 
               onClick={handleNotificationClick}
-              className="neuro-button p-2 text-text-primary relative"
+              className="neuro-button p-2 text-text-primary hover:text-primary transition-colors relative"
+              aria-label="View notifications"
             >
               <Bell size={18} />
-              <span className="absolute -top-1 -right-1 w-4 h-4 bg-red-500 rounded-full text-xs text-white flex items-center justify-center">
+              <span className="absolute -top-1 -right-1 w-4 h-4 bg-red-500 rounded-full text-xs text-white flex items-center justify-center" aria-label="2 new notifications">
                 2
               </span>
             </button>
           )}
-          <div className="neuro-button w-8 h-8 rounded-full flex items-center justify-center">
+          <button 
+            onClick={handleProfileClick}
+            className="neuro-button w-8 h-8 rounded-full flex items-center justify-center hover:text-primary transition-colors"
+            aria-label="View profile"
+          >
             <User size={16} className="text-primary" />
-          </div>
+          </button>
         </div>
       </div>
     </header>
